@@ -8,11 +8,8 @@ import {Unit} from './Models/unit'
 })
 
 export class AppComponent {
-  title = 'app works!';
-   Units: Unit[] = [
-  { id: 1, name: 'Teaspoon'},
-  { id: 2, name: 'Pound'}
-];
+  title = 'Red Squirrel';
+
 
 }
 
