@@ -2,7 +2,7 @@
  * Created by chris on 3/1/17.
  */
 import { Component, Input } from '@angular/core';
-import { Unit } from '../Models/unit'
+import { Unit } from '../models/unit'
 
 @Component({
   selector: 'unit-list',
