@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/Feasoron/red-squirrel-wev.svg?branch=develop)](https://travis-ci.org/Feasoron/red-squirrel-core)
+
+# Purpose
+
+Red Squirrel Web is the work in progress Angular 2 web client for [Red Squirrel](https://github.com/Feasoron/red-squirrel-core)
+
 # WebClient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.0.
