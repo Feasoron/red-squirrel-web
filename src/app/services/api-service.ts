@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 export class ApiService{
   constructor(private http: Http) {}
 
-  baseUri : string = "http://0.0.0.0:5000/api/";
+  baseUri : string = "http://redsquirrel.io/api/";
 
   getUnits() :Observable<Unit[]> {
 
