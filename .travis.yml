@@ -3,11 +3,9 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - '6.9.0'
+  - '6.9'
 
 before_script:
-- npm install -g angular-cli
-- npm install -g karma
 - npm install
 
 script: ng build
