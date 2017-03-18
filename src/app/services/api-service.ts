@@ -1,6 +1,6 @@
 import {Unit} from "../models/unit";
 import { Injectable } from '@angular/core';
-import { Http }       from '@angular/http';
+import { Http, Response }       from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 /**
@@ -19,4 +19,12 @@ export class ApiService{
       .get(this.baseUri + 'units')
       .map(response => response.json().data as Unit[]);
   }
+
+  private extractData(res: Response) {
+
+        let body = res.json();
+        let resp = body || { };
+
+        return resp;
+    };
 }
