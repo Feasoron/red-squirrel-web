@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Unit} from './models/unit'
 
 @Component({
   selector: 'app-root',
@@ -9,8 +8,6 @@ import {Unit} from './models/unit'
 
 export class AppComponent {
   title = 'Red Squirrel';
-
-
 }
 
 
