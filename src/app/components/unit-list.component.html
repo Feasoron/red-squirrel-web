@@ -1,0 +1,6 @@
+<md-card>
+  <md-card-header>Available Units</md-card-header>
+  <md-list dense *ngFor="let unit of Units | async">
+    <md-list-item>{{unit.name}}</md-list-item>
+  </md-list>
+</md-card>
