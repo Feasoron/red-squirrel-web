@@ -11,13 +11,13 @@ import 'rxjs/add/operator/map';
 export class ApiService{
   constructor(private http: Http) {}
 
-  baseUri : string = "http://redsquirrel.io/api/";
+  baseUri : string = "https://redsquirrel.io/api/";
 
   getUnits() :Observable<Unit[]> {
 
     return this.http
       .get(this.baseUri + 'units')
-      .map(response => response.json().data as Unit[]);
+      .map(response => response.json() as Unit[]);
   }
 
   private extractData(res: Response) {
