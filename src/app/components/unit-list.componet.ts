@@ -11,9 +11,9 @@ import { Observable }     from 'rxjs/Observable';
 
 @Component({
   selector: 'unit-list',
-  template: `<div *ngFor="let unit of Units | async">
-  <span>{{unit.name}}</span>
-  </div>`,
+  template: `<md-card><md-list dense *ngFor="let unit of Units | async">
+  <md-list-item>{{unit.name}}</md-list-item>
+  </md-list></md-card>`,
 
   providers: [ApiService]
 
