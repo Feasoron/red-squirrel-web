@@ -3,4 +3,8 @@
   <md-list dense *ngFor="let unit of Units | async">
     <md-list-item>{{unit.name}}</md-list-item>
   </md-list>
+  <md-input-container>
+    <input mdInput placeholder="Unit Name" />
+  </md-input-container>
+  <button md-raised-button color=’primary’><md-icon>check</md-icon></button>
 </md-card>
