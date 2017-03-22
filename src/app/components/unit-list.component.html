@@ -1,13 +1,17 @@
-<md-card *ngIf="Units">
+<md-card *ngIf='Units'>
   <md-card-header>Available Units</md-card-header>
-  <md-list dense *ngFor="let unit of Units | async">
-    <md-list-item>{{unit.name}}</md-list-item>
+  <md-list dense *ngFor='let unit of Units | async'>
+    <md-list-item>
+     <span> {{unit.name}}</span>
+      <button md-button color='primary' (click)='delete(unit)'>
+        <i class='material-icons md-18'>delete</i>
+      </button>
+    </md-list-item>
   </md-list>
   <md-input-container>
-    <input #box mdInput  placeholder="Unit Name"
-           (keyup.enter)="addUnit(box.value)"
-           (blur)="addUnit(box.value)">
-
+    <input #box mdInput  placeholder='Unit Name'
+           [(ngModel)]='NewName'
+           (keyup.enter)='addUnit()'/>
   </md-input-container>
   <button md-raised-button color=’primary’ ><md-icon>check</md-icon></button>
 </md-card>

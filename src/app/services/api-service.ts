@@ -34,12 +34,21 @@ export class ApiService implements OnInit{
       .subscribe(data => {
         console.log(data);
           this.dataStore.units = data;
-          this._units.next(Object.assign({}, this.dataStore).units);
+          this.upateUnitSubscriptions();
       }, error => console.log('Could not load todos.'));
   }
 
   addUnit(unit: Unit){
     this.dataStore.units.push(unit);
+    this.upateUnitSubscriptions()
+  }
+
+  deleteUnit(unit: Unit){
+    this.dataStore.units.splice(this.dataStore.units.indexOf(unit), 1);
+    this.upateUnitSubscriptions();
+  }
+
+  private upateUnitSubscriptions(){
     this._units.next(Object.assign({}, this.dataStore).units);
   }
 
