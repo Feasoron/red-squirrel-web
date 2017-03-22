@@ -17,12 +17,19 @@ export class UnitListComponent implements OnInit{
   constructor(private apiService: ApiService) { }
 
   Units: Observable<Unit[]>;
+  NewName: string;
 
-  getUnits() : void{
-    this.Units = this.apiService.getUnits();
+  addUnit(name : string){
+    let newUnit : Unit = {
+      id: null,
+      name: name
+    };
+
+     this.apiService.addUnit(newUnit);
   }
 
   ngOnInit() : void {
-    this.getUnits();
+    this.Units = this.apiService.units;
+    this.apiService.getUnits();
   }
 }
