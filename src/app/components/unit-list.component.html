@@ -2,10 +2,10 @@
   <md-card-header>Available Units</md-card-header>
   <md-list dense *ngFor='let unit of Units | async'>
     <md-list-item>
-     <span> {{unit.name}}</span>
       <button md-button color='primary' (click)='delete(unit)'>
-        <i class='material-icons md-18'>delete</i>
-      </button>
+          <i class='material-icons md-18'>delete</i>
+    </button>
+     <span> {{unit.name}}</span>
     </md-list-item>
   </md-list>
   <md-input-container>
