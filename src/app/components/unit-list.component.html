@@ -2,7 +2,7 @@
   <md-card-header>Available Units</md-card-header>
   <md-list dense *ngFor='let unit of Units | async'>
     <md-list-item>
-      <button md-button color='primary' (click)='delete(unit)'>
+      <button md-button color='primary' (click)='delete(unit); $event.stopPropagation()'>
           <i class='material-icons md-18'>delete</i>
     </button>
      <span> {{unit.name}}</span>
@@ -13,5 +13,5 @@
            [(ngModel)]='NewName'
            (keyup.enter)='addUnit()'/>
   </md-input-container>
-  <button md-raised-button color=’primary’ ><md-icon>check</md-icon></button>
+  <button md-raised-button color=’primary’ (click)='addUnit()'><md-icon>check</md-icon></button>
 </md-card>

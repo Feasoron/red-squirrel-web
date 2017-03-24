@@ -1,6 +1,6 @@
 import {Unit} from "../models/unit";
 import {Injectable, OnInit} from '@angular/core';
-import { Http, Response }       from '@angular/http';
+import { Http, Response, Headers }       from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {BehaviorSubject} from "rxjs";
@@ -9,6 +9,7 @@ import {BehaviorSubject} from "rxjs";
 
 export class ApiService implements OnInit{
 
+  private headers = new Headers({'Content-Type': 'application/json'});
   private dataStore: {  // This is where we will store our data in memory
     units: Unit[]
   };
@@ -26,6 +27,7 @@ export class ApiService implements OnInit{
     this.dataStore = { units: [] };
     this._units = <BehaviorSubject<Unit[]>>new BehaviorSubject([]);
     this.units = this._units.asObservable();
+    this.getUnits();
   }
 
   getUnits() : void  {
@@ -34,21 +36,37 @@ export class ApiService implements OnInit{
       .subscribe(data => {
         console.log(data);
           this.dataStore.units = data;
-          this.upateUnitSubscriptions();
+          this.updateUnitSubscriptions();
       }, error => console.log('Could not load todos.'));
   }
 
   addUnit(unit: Unit){
-    this.dataStore.units.push(unit);
-    this.upateUnitSubscriptions()
+    var payload =  JSON.stringify({value: unit});
+    console.log(payload);
+
+    this.http.post(this.baseUri + 'units', payload,  {headers: this.headers})
+      .subscribe(
+        () => {
+          this.dataStore.units.push(unit);
+          this.updateUnitSubscriptions();
+          return true;
+        }, error => console.log(error)
+      );
   }
 
-  deleteUnit(unit: Unit){
-    this.dataStore.units.splice(this.dataStore.units.indexOf(unit), 1);
-    this.upateUnitSubscriptions();
+  deleteUnit(unit: Unit): Promise<Boolean>{
+    return new Promise((resolve) =>{
+      this.http.delete(this.baseUri + 'units/' + unit.id)
+        .subscribe(() => {
+            this.dataStore.units.splice(this.dataStore.units.indexOf(unit), 1);
+            this.updateUnitSubscriptions();
+            return true;
+          },
+          () => {return false })
+    });
   }
 
-  private upateUnitSubscriptions(){
+  private updateUnitSubscriptions(){
     this._units.next(Object.assign({}, this.dataStore).units);
   }
 
