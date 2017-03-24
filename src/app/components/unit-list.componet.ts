@@ -5,7 +5,6 @@ import {ApiService} from '../services/api-service'
 import { OnInit } from '@angular/core';
 import { Observable }     from 'rxjs/Observable';
 
-
 @Component({
   selector: 'unit-list',
   templateUrl: 'unit-list.component.html',
@@ -14,9 +13,7 @@ import { Observable }     from 'rxjs/Observable';
 
 export class UnitListComponent implements OnInit{
 
-  constructor(private apiService: ApiService) {
-
-  }
+  constructor(private apiService: ApiService) {}
 
   Units: Observable<Unit[]>;
   NewName: string = null;
@@ -28,9 +25,10 @@ export class UnitListComponent implements OnInit{
       name: this.NewName
     };
 
-     this.apiService.addUnit(newUnit);
+     this.apiService.addUnit(newUnit)
      //todo - async on response
-    this.NewName = null;
+    this.NewName = null
+
   }
 
   delete(unit: Unit){
@@ -39,6 +37,5 @@ export class UnitListComponent implements OnInit{
 
   ngOnInit() : void {
     this.Units = this.apiService.units;
-    this.apiService.getUnits();
   }
 }
