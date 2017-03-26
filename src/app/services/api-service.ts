@@ -14,7 +14,7 @@ export class ApiService implements OnInit{
     units: Unit[]
   };
 
-  baseUri : string = "https://redsquirrel.io/api/";
+  baseUri : string = 'http://localhost:5000/api/'//"https://redsquirrel.io/api/";
   private _units: BehaviorSubject<Unit[]>;
   units : Observable<Unit[]>;
 
@@ -37,11 +37,11 @@ export class ApiService implements OnInit{
         console.log(data);
           this.dataStore.units = data;
           this.updateUnitSubscriptions();
-      }, error => console.log('Could not load todos.'));
+      }, error => console.log('Could not load units: ' + error));
   }
 
   addUnit(unit: Unit){
-    var payload =  JSON.stringify({value: unit});
+    var payload =  JSON.stringify(unit);
     console.log(payload);
 
     this.http.post(this.baseUri + 'units', payload,  {headers: this.headers})
