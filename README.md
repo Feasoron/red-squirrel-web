@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Feasoron/red-squirrel-wev.svg?branch=develop)](https://travis-ci.org/Feasoron/red-squirrel-core)
+[![Build Status](https://travis-ci.org/Feasoron/red-squirrel-web.svg?branch=master)](https://travis-ci.org/Feasoron/red-squirrel-web)
 
 # Purpose
 
