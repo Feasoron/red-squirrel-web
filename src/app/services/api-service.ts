@@ -42,16 +42,19 @@ export class ApiService implements OnInit{
 
   addUnit(unit: Unit){
     var payload =  JSON.stringify(unit);
-    console.log(payload);
 
     this.http.post(this.baseUri + 'units', payload,  {headers: this.headers})
-      .subscribe(
-        () => {
+      .map(
+        (res: Response) => {
+          unit.id = res.json().result;
           this.dataStore.units.push(unit);
           this.updateUnitSubscriptions();
           return true;
         }, error => console.log(error)
-      );
+      )
+      .subscribe((res: Boolean) => {
+      });
+
   }
 
   deleteUnit(unit: Unit): Promise<Boolean>{
@@ -71,7 +74,8 @@ export class ApiService implements OnInit{
   }
 
   private extractData(res: Response) {
-
+        debugger;
+        console.log(res);
         let body = res.json();
         let resp = body || { };
 
