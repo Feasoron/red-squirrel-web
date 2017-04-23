@@ -1,0 +1,17 @@
+<md-card *ngIf='Locations'>
+  <md-card-header>Available Locations</md-card-header>
+  <md-list dense *ngFor='let location of Locations | async'>
+    <md-list-item>
+      <button md-button color='primary' (click)='delete(location); $event.stopPropagation()'>
+          <i class='material-icons md-18'>delete</i>
+    </button>
+     <span> {{location.name}}</span>
+    </md-list-item>
+  </md-list>
+  <md-input-container>
+    <input #box mdInput  placeholder='Unit Name'
+           [(ngModel)]='NewName'
+           (keyup.enter)='addLocation()'/>
+  </md-input-container>
+  <button md-raised-button color=’primary’ (click)='addLocation()'><md-icon>check</md-icon></button>
+</md-card>
