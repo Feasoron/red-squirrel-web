@@ -109,7 +109,7 @@ export class ApiService implements OnInit{
     return new Promise((resolve) =>{
       this.http.delete(this.baseUri + 'locations/' + location.id)
         .subscribe(() => {
-            this.dataStore.units.splice(this.dataStore.units.indexOf(location), 1);
+            this.dataStore.locations.splice(this.dataStore.units.indexOf(location), 1);
             this.updateLocationSubscriptions();
             return true;
           },
