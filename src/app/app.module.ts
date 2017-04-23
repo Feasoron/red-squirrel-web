@@ -6,12 +6,14 @@ import 'hammerjs';
 import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { UnitListComponent } from './components/unit-list.componet'
+import { LocationListComponent } from './components/location-list.componet'
 import { HeaderComponent } from './components/header.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     UnitListComponent,
+    LocationListComponent,
     HeaderComponent
   ],
   imports: [
