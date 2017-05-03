@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { UnitListComponent } from './components/unit-list.componet'
 import { LocationListComponent } from './components/location-list.componet'
 import { HeaderComponent } from './components/header.component'
+import {FoodListComponent} from "./components/food-list.componet";
 
 @NgModule({
   declarations: [
     AppComponent,
     UnitListComponent,
     LocationListComponent,
+    FoodListComponent,
     HeaderComponent
   ],
   imports: [
