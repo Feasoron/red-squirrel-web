@@ -1,5 +1,6 @@
 import {Unit} from "../models/unit";
 import {Location} from "../models/location"
+import {Food} from "../models/food"
 import {Injectable, OnInit} from '@angular/core';
 import { Http, Response, Headers }       from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
@@ -13,33 +14,43 @@ export class ApiService implements OnInit{
   private headers = new Headers({'Content-Type': 'application/json'});
   private dataStore: {  // This is where we will store our data in memory
     units: Unit[],
-    locations:Location[]
+    locations: Location[],
+    foods: Food[]
   };
 
   baseUri : string = 'http://localhost:5000/api/'//"https://redsquirrel.io/api/";
   private _units: BehaviorSubject<Unit[]>;
   private _locations: BehaviorSubject<Location[]>;
+  private _foods: BehaviorSubject<Food[]>;
   locations : Observable<Location[]>;
   units : Observable<Unit[]>;
+  foods : Observable<Food[]>;
 
   ngOnInit(): void {
     this._units = new BehaviorSubject([]);
     this._locations = new BehaviorSubject([]);
+    this._foods = new BehaviorSubject([]);
 
     this.getUnits();
     this.getLocations();
+    this.getFoods();
   }
 
   constructor(private http: Http) {
-    this.dataStore = { units: [], locations: [] };
+    this.dataStore = { units: [], locations: [], foods: [] };
+
     this._units = <BehaviorSubject<Unit[]>>new BehaviorSubject([]);
     this.units = this._units.asObservable();
 
     this._locations = <BehaviorSubject<Location[]>>new BehaviorSubject([]);
     this.locations = this._locations.asObservable();
 
+    this._foods = <BehaviorSubject<Food[]>>new BehaviorSubject([]);
+    this.foods = this._foods.asObservable();
+
     this.getUnits();
     this.getLocations()
+    this.getFoods();
   }
 
   getUnits() : void  {
@@ -60,6 +71,16 @@ export class ApiService implements OnInit{
         this.dataStore.locations = data;
         this.updateLocationSubscriptions();
       }, error => console.log('Could not load locations: ' + error));
+  }
+
+  getFoods() : void  {
+    this.http.get(this.baseUri + 'foods')
+      .map(response => response.json())
+      .subscribe(data => {
+        console.log(data);
+        this.dataStore.foods = data;
+        this.updateFoodSubscriptions();
+      }, error => console.log('Could not load foods: ' + error));
   }
 
   addUnit(unit: Unit){
@@ -96,6 +117,23 @@ export class ApiService implements OnInit{
       });
   }
 
+  addFood(food: Food){
+    var payload =  JSON.stringify(food);
+    console.log(payload);
+
+    this.http.post(this.baseUri + 'foods', payload,  {headers: this.headers})
+      .map(
+        (res: Response) => {
+          food.id = res.json().result;
+          this.dataStore.foods.push(food);
+          this.updateFoodSubscriptions();
+          return true;
+        }, error => console.log(error)
+      )
+      .subscribe((res: Boolean) => {
+      });
+  }
+
   deleteUnit(unit: Unit): Promise<Boolean>{
     return new Promise((resolve) =>{
       this.http.delete(this.baseUri + 'units/' + unit.id)
@@ -112,7 +150,7 @@ export class ApiService implements OnInit{
     return new Promise((resolve) =>{
       this.http.delete(this.baseUri + 'locations/' + location.id)
         .subscribe(() => {
-            this.dataStore.locations.splice(this.dataStore.units.indexOf(location), 1);
+            this.dataStore.locations.splice(this.dataStore.locations.indexOf(location), 1);
             this.updateLocationSubscriptions();
             return true;
           },
@@ -120,12 +158,27 @@ export class ApiService implements OnInit{
     });
   }
 
+  deleteFood(food: Food): Promise<Boolean>{
+    return new Promise((resolve) =>{
+      this.http.delete(this.baseUri + 'foods/' + food.id)
+        .subscribe(() => {
+            this.dataStore.foods.splice(this.dataStore.foods.indexOf(food), 1);
+            this.updateFoodSubscriptions();
+            return true;
+          },
+          () => {return false })
+    });
+  }
   private updateUnitSubscriptions(){
     this._units.next(Object.assign({}, this.dataStore).units);
   }
 
   private updateLocationSubscriptions(){
     this._locations.next(Object.assign({}, this.dataStore).locations);
+  }
+
+  private updateFoodSubscriptions(){
+    this._foods.next(Object.assign({}, this.dataStore).foods);
   }
 
   private extractData(res: Response) {

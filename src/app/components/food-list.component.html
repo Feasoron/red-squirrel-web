@@ -1,0 +1,17 @@
+<md-card *ngIf='Foods'>
+  <md-card-header>Available Foods</md-card-header>
+  <md-list dense *ngFor='let food of Foods | async'>
+    <md-list-item>
+      <button md-button color='primary' (click)='delete(food); $event.stopPropagation()'>
+          <i class='material-icons md-18'>delete</i>
+    </button>
+     <span> {{food.name}}</span>
+    </md-list-item>
+  </md-list>
+  <md-input-container>
+    <input #box mdInput  placeholder='Food Name'
+           [(ngModel)]='NewName'
+           (keyup.enter)='addFood()'/>
+  </md-input-container>
+  <button md-raised-button color=’primary’ (click)='addFood()'><md-icon>check</md-icon></button>
+</md-card>
