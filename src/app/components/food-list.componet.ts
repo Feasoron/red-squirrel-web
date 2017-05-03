@@ -19,7 +19,7 @@ export class FoodListComponent implements OnInit{
   Foods: Observable<Food[]>;
   NewName: string = null;
 
-  addLocation(){
+  addFood(){
     console.log(this.NewName);
     let newFood : Food = {
       id: null,
