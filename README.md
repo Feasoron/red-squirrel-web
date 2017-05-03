@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/Feasoron/red-squirrel-web.svg?branch=develop](https://travis-ci.org/Feasoron/red-squirrel-web)
-
+[![Build Status](https://travis-ci.org/Feasoron/red-squirrel-web.svg?branch=develop)](https://travis-ci.org/Feasoron/red-squirrel-web)
 # Purpose
 
 Red Squirrel Web is the work in progress Angular 2 web client for [Red Squirrel](https://github.com/Feasoron/red-squirrel-core)
