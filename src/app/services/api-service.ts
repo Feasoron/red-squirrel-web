@@ -18,7 +18,7 @@ export class ApiService implements OnInit{
     foods: Food[]
   };
 
-  baseUri : string = 'http://localhost:5000/api/'//"https://redsquirrel.io/api/";
+  baseUri : string = "https://redsquirrel.io/api/";
   private _units: BehaviorSubject<Unit[]>;
   private _locations: BehaviorSubject<Location[]>;
   private _foods: BehaviorSubject<Food[]>;
