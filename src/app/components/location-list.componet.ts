@@ -27,7 +27,7 @@ export class LocationListComponent implements OnInit{
     };
 
      this.apiService.addLocation(newLocation)
-     //todo - async on response
+     // todo - async on response
     this.NewName = null
 
   }
@@ -36,7 +36,7 @@ export class LocationListComponent implements OnInit{
     this.apiService.deleteLocation(location);
   }
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.Locations = this.apiService.locations;
   }
 }

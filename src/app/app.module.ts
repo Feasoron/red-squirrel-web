@@ -8,7 +8,11 @@ import { AppComponent } from './app.component';
 import { UnitListComponent } from './components/unit-list.componet'
 import { LocationListComponent } from './components/location-list.componet'
 import { HeaderComponent } from './components/header.component'
-import {FoodListComponent} from "./components/food-list.componet";
+import {FoodListComponent} from './components/food-list.componet';
+import { LoginAreaComponent } from './components/login-area.component';
+import {AuthService} from './services/auth.service';
+import { RouterModule } from '@angular/router';
+import {CallbackComponent} from './callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -16,15 +20,22 @@ import {FoodListComponent} from "./components/food-list.componet";
     UnitListComponent,
     LocationListComponent,
     FoodListComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginAreaComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot([
+      { path: '', component: UnitListComponent },
+      { path: 'callback', component: CallbackComponent },
+      { path: '**', redirectTo: '' }
+    ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
