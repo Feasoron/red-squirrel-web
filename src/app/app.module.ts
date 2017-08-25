@@ -13,6 +13,7 @@ import { LoginAreaComponent } from './components/login-area.component';
 import {AuthService} from './services/auth.service';
 import { RouterModule } from '@angular/router';
 import {CallbackComponent} from './callback/callback.component';
+import {AuthorizednAreaComponent} from './components/authorized-area.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {CallbackComponent} from './callback/callback.component';
     FoodListComponent,
     HeaderComponent,
     LoginAreaComponent,
-    CallbackComponent
+    CallbackComponent,
+    AuthorizednAreaComponent
   ],
   imports: [
     BrowserModule,
