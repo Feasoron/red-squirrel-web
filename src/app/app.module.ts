@@ -14,6 +14,7 @@ import {AuthService} from './services/auth.service';
 import { RouterModule } from '@angular/router';
 import {CallbackComponent} from './callback/callback.component';
 import {AuthorizednAreaComponent} from './components/authorized-area.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {AuthorizednAreaComponent} from './components/authorized-area.component';
     FormsModule,
     HttpModule,
     MaterialModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: UnitListComponent },
       { path: 'callback', component: CallbackComponent },

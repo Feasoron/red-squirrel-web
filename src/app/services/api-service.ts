@@ -1,11 +1,11 @@
-import {Unit} from "../models/unit";
-import {Location} from "../models/location"
-import {Food} from "../models/food"
+import {Unit} from '../models/unit';
+import {Location} from '../models/location'
+import {Food} from '../models/food'
 import {Injectable, OnInit} from '@angular/core';
 import { Http, Response, Headers }       from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 
@@ -18,13 +18,13 @@ export class ApiService implements OnInit{
     foods: Food[]
   };
 
-  baseUri : string = "https://redsquirrel.io/api/";
+  baseUri = 'http://localhost:5000/api/';
   private _units: BehaviorSubject<Unit[]>;
   private _locations: BehaviorSubject<Location[]>;
   private _foods: BehaviorSubject<Food[]>;
-  locations : Observable<Location[]>;
-  units : Observable<Unit[]>;
-  foods : Observable<Food[]>;
+  locations: Observable<Location[]>;
+  units: Observable<Unit[]>;
+  foods: Observable<Food[]>;
 
   ngOnInit(): void {
     this._units = new BehaviorSubject([]);
@@ -53,7 +53,7 @@ export class ApiService implements OnInit{
     this.getFoods();
   }
 
-  getUnits() : void  {
+  getUnits(): void  {
     this.http.get(this.baseUri + 'units')
       .map(response => response.json())
       .subscribe(data => {
@@ -63,7 +63,7 @@ export class ApiService implements OnInit{
       }, error => console.log('Could not load units: ' + error));
   }
 
-  getLocations() : void  {
+  getLocations(): void  {
     this.http.get(this.baseUri + 'locations')
       .map(response => response.json())
       .subscribe(data => {
@@ -73,7 +73,7 @@ export class ApiService implements OnInit{
       }, error => console.log('Could not load locations: ' + error));
   }
 
-  getFoods() : void  {
+  getFoods(): void  {
     this.http.get(this.baseUri + 'foods')
       .map(response => response.json())
       .subscribe(data => {
@@ -84,7 +84,7 @@ export class ApiService implements OnInit{
   }
 
   addUnit(unit: Unit){
-    var payload =  JSON.stringify(unit);
+    const payload =  JSON.stringify(unit);
 
     this.http.post(this.baseUri + 'units', payload,  {headers: this.headers})
       .map(
@@ -101,7 +101,7 @@ export class ApiService implements OnInit{
   }
 
   addLocation(location: Location){
-    var payload =  JSON.stringify(location);
+    const payload =  JSON.stringify(location);
     console.log(payload);
 
     this.http.post(this.baseUri + 'locations', payload,  {headers: this.headers})
@@ -118,7 +118,7 @@ export class ApiService implements OnInit{
   }
 
   addFood(food: Food){
-    var payload =  JSON.stringify(food);
+    const payload =  JSON.stringify(food);
     console.log(payload);
 
     this.http.post(this.baseUri + 'foods', payload,  {headers: this.headers})
@@ -135,7 +135,7 @@ export class ApiService implements OnInit{
   }
 
   deleteUnit(unit: Unit): Promise<Boolean>{
-    return new Promise((resolve) =>{
+    return new Promise((resolve) => {
       this.http.delete(this.baseUri + 'units/' + unit.id)
         .subscribe(() => {
             this.dataStore.units.splice(this.dataStore.units.indexOf(unit), 1);
@@ -147,7 +147,7 @@ export class ApiService implements OnInit{
   }
 
   deleteLocation(location: Location): Promise<Boolean>{
-    return new Promise((resolve) =>{
+    return new Promise((resolve) => {
       this.http.delete(this.baseUri + 'locations/' + location.id)
         .subscribe(() => {
             this.dataStore.locations.splice(this.dataStore.locations.indexOf(location), 1);
@@ -159,7 +159,7 @@ export class ApiService implements OnInit{
   }
 
   deleteFood(food: Food): Promise<Boolean>{
-    return new Promise((resolve) =>{
+    return new Promise((resolve) => {
       this.http.delete(this.baseUri + 'foods/' + food.id)
         .subscribe(() => {
             this.dataStore.foods.splice(this.dataStore.foods.indexOf(food), 1);
@@ -184,8 +184,8 @@ export class ApiService implements OnInit{
   private extractData(res: Response) {
         debugger;
         console.log(res);
-        let body = res.json();
-        let resp = body || { };
+        const body = res.json();
+        const resp = body || { };
 
         return resp;
     };
