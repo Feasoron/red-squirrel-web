@@ -9,7 +9,7 @@ import {Location} from "../models/location";
 @Component({
   selector: 'location-list',
   templateUrl: 'location-list.component.html',
-  providers: [ApiService]
+  providers: []
 })
 
 export class LocationListComponent implements OnInit{

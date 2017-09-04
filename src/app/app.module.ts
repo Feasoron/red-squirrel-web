@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import {CallbackComponent} from './callback/callback.component';
 import {AuthorizednAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ApiService} from './services/api-service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: '**', redirectTo: '' }
     ])
   ],
-  providers: [AuthService],
+  providers: [AuthService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
