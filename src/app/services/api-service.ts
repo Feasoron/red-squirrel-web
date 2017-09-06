@@ -1,18 +1,18 @@
-import {Unit} from '../models/unit';
-import {Location} from '../models/location'
-import {Food} from '../models/food'
-import {Injectable, OnInit} from '@angular/core';
-import { Http, Response, Headers }       from '@angular/http';
-import { Observable }     from 'rxjs/Observable';
+import { Unit } from '../models/unit';
+import { Location } from '../models/location'
+import { Food } from '../models/food'
+import { Injectable, OnInit } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {BehaviorSubject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 
 export class ApiService implements OnInit{
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private dataStore: {  // This is where we will store our data in memory
+  private dataStore: {
     units: Unit[],
     locations: Location[],
     foods: Food[]
@@ -49,7 +49,7 @@ export class ApiService implements OnInit{
     this.foods = this._foods.asObservable();
 
     this.getUnits();
-    this.getLocations()
+    this.getLocations();
     this.getFoods();
   }
 
