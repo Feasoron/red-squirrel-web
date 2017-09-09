@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CallbackComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    debugger;
+  }
 
   ngOnInit() {
+    debugger;
   }
 
 }

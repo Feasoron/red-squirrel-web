@@ -2,15 +2,14 @@ import { Unit } from '../models/unit';
 import { Location } from '../models/location'
 import { Food } from '../models/food'
 import { Injectable, OnInit } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 
-export class ApiService implements OnInit{
-
+export class ApiService implements OnInit {
   private headers = new Headers({'Content-Type': 'application/json'});
   private dataStore: {
     units: Unit[],
@@ -53,8 +52,17 @@ export class ApiService implements OnInit{
     this.getFoods();
   }
 
+    getHeader(): RequestOptions {
+    const headers = new Headers();
+    const token = localStorage.getItem('access_token');
+    headers.append('Content-Type', 'application/json');
+    headers.append('authentication', token);
+
+    return new RequestOptions({ headers: headers });
+  }
+
   getUnits(): void  {
-    this.http.get(this.baseUri + 'units')
+    this.http.get(this.baseUri + 'units', this.getHeader())
       .map(response => response.json())
       .subscribe(data => {
         console.log(data);
@@ -64,6 +72,8 @@ export class ApiService implements OnInit{
   }
 
   getLocations(): void  {
+    const token = localStorage.getItem('access_token');
+
     this.http.get(this.baseUri + 'locations')
       .map(response => response.json())
       .subscribe(data => {
