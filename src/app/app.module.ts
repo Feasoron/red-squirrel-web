@@ -17,7 +17,9 @@ import {AuthorizednAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ApiService} from './services/api-service';
 import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
-
+export function getToken(){
+  return localStorage.getItem('id_token');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,7 @@ import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt'
     headerName: 'Authorization',
     headerPrefix: 'bearer',
     tokenName: 'token',
-    tokenGetter: (() => localStorage.getItem('id_token')),
+    tokenGetter: getToken,
     globalHeaders: [{ 'Content-Type': 'application/json' }],
     noJwtError: true
   })],
