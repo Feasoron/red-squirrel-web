@@ -16,6 +16,7 @@ import {CallbackComponent} from './callback/callback.component';
 import {AuthorizednAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ApiService} from './services/api-service';
+import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,15 @@ import {ApiService} from './services/api-service';
       { path: '**', redirectTo: '' }
     ])
   ],
-  providers: [AuthService, ApiService],
+  providers: [AuthService, ApiService, AuthHttp,
+    provideAuth({
+    headerName: 'Authorization',
+    headerPrefix: 'bearer',
+    tokenName: 'token',
+    tokenGetter: (() => localStorage.getItem('id_token')),
+    globalHeaders: [{ 'Content-Type': 'application/json' }],
+    noJwtError: true
+  })],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

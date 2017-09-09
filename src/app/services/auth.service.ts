@@ -2,27 +2,35 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
+import { AUTH_CONFIG } from '../auth0-variables';
 
 @Injectable()
 export class AuthService {
 
   auth0 = new auth0.WebAuth({
-    clientID: 'gvI7avZ3InJBylWShAhWvox9GLkgCPC5',
-    domain: 'redsquirrel.auth0.com',
+    clientID: AUTH_CONFIG.CLIENT_ID,
+    domain: AUTH_CONFIG.CLIENT_DOMAIN,
+    audience: 'https://redsquirrel.io',
+    aud: 'https://redsquirrel.io',
+    redirectUri: AUTH_CONFIG.REDIRECT,
     responseType: 'token id_token',
-    audience: 'https://redsquirrel.auth0.com/userinfo',
-    redirectUri: 'http://localhost:4200/callback',
     scope: 'openid'
   });
 
   constructor(public router: Router) {}
 
   public login(): void {
-    this.auth0.authorize();
+    this.auth0.authorize({
+      responseType: 'token id_token',
+      redirectUri: AUTH_CONFIG.REDIRECT,
+      audience: 'https://redsquirrel.io',
+      aud: 'https://redsquirrel.io',
+      scope: AUTH_CONFIG.SCOPE
+    });
   }
 
   public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
+    this.auth0.parseHash(window.location.hash, (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
