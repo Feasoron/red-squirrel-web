@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {HttpModule, RequestOptions, Http} from '@angular/http';
 import 'hammerjs';
 import { MaterialModule } from '@angular/material';
 import { AppComponent } from './app.component';
@@ -17,8 +17,12 @@ import {AuthorizednAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ApiService} from './services/api-service';
 import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
-export function getToken(){
-  return localStorage.getItem('id_token');
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+    tokenName: 'token',
+    tokenGetter: (() => localStorage.getItem('id_token')),
+  }), http, options);
 }
 @NgModule({
   declarations: [
@@ -43,15 +47,12 @@ export function getToken(){
       { path: '**', redirectTo: '' }
     ])
   ],
-  providers: [AuthService, ApiService, AuthHttp,
-    provideAuth({
-    headerName: 'Authorization',
-    headerPrefix: 'bearer',
-    tokenName: 'token',
-    tokenGetter: getToken,
-    globalHeaders: [{ 'Content-Type': 'application/json' }],
-    noJwtError: true
-  })],
+  providers: [AuthService, ApiService,  {
+    provide: AuthHttp,
+    useFactory: authHttpServiceFactory,
+    deps: [Http, RequestOptions]
+  }
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
