@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Unit } from '../models/unit'
 import {ApiService} from '../services/api-service'
 import { OnInit } from '@angular/core';
-import { Observable }     from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'unit-list',
