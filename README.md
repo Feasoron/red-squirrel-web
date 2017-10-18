@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/Feasoron/red-squirrel-web.svg?branch=develop)](https://travis-ci.org/Feasoron/red-squirrel-web)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-round)](http://makeapullrequest.com)
 ![](https://reposs.herokuapp.com/?path=Feasoron/red-squirrel-web)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Feasoron/red-squirrel-web.svg)](https://greenkeeper.io/)
 
 # Purpose
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Feasoron/red-squirrel-web.svg)](https://greenkeeper.io/)
 
 Red Squirrel Web is the work in progress Angular 2 web client for [Red Squirrel](https://github.com/Feasoron/red-squirrel-core)
 
