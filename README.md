@@ -4,6 +4,8 @@
 
 # Purpose
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Feasoron/red-squirrel-web.svg)](https://greenkeeper.io/)
+
 Red Squirrel Web is the work in progress Angular 2 web client for [Red Squirrel](https://github.com/Feasoron/red-squirrel-core)
 
 # WebClient
