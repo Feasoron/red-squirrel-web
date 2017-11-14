@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {HttpModule, RequestOptions, Http} from '@angular/http';
 import 'hammerjs';
-import { MaterialModule } from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatToolbarModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { UnitListComponent } from './components/unit-list.componet'
 import { LocationListComponent } from './components/location-list.componet'
@@ -16,12 +16,14 @@ import {CallbackComponent} from './callback/callback.component';
 import {AuthorizednAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ApiService} from './services/api-service';
-import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     tokenName: 'token',
-    tokenGetter: (() => localStorage.getItem('id_token')),
+    tokenGetter: () => {
+      return localStorage.getItem('id_token');
+    },
   }), http, options);
 }
 @NgModule({
@@ -39,7 +41,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatToolbarModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: UnitListComponent },
