@@ -9,7 +9,7 @@ import {Food} from "../models/food";
 @Component({
   selector: 'food-list',
   templateUrl: 'food-list.component.html',
-  providers: [ApiService]
+  providers: []
 })
 
 export class FoodListComponent implements OnInit{

@@ -15,11 +15,12 @@
       "main": "main.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
+      "tsconfig": "../tsconfig.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

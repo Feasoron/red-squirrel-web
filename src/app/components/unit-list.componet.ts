@@ -6,9 +6,9 @@ import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'unit-list',
+  selector: 'app-unit-list',
   templateUrl: 'unit-list.component.html',
-  providers: [ApiService]
+  providers: []
 })
 
 export class UnitListComponent implements OnInit{
