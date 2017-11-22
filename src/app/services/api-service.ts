@@ -31,9 +31,9 @@ export class ApiService implements OnInit {
     this._locations = new BehaviorSubject([]);
     this._foods = new BehaviorSubject([]);
 
-    this.getUnits();
-    this.getLocations();
-    this.getFoods();
+ //   this.getUnits();
+  //  this.getLocations();
+ //   this.getFoods();
   }
 
   constructor(private http: Http, private authHttp: AuthHttp) {
