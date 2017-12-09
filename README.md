@@ -9,7 +9,7 @@
 What is Red Squirrel
 --------------------
 
-Red Squirre is a .Net Core server backend for providing management and use of food and ingredients in your home. Red Squirrel allows you to record what you have, where it is, and how much you have. Beyond that, it has built in conversions for various units, both standard (1 Gallon = 4 Cups) and food-specifc (1 cup shredded carrots = 2 carrots).  
+Red Squirre is a  angular frontend for providing management and use of food and ingredients in your home. Red Squirrel allows you to record what you have, where it is, and how much you have. Beyond that, it has built in conversions for various units, both standard (1 Gallon = 4 Cups) and food-specifc (1 cup shredded carrots = 2 carrots).  
 
 
 Getting Started
@@ -38,4 +38,4 @@ Bugs, feature requests and pull requests are all welcome, as long as you follow 
 
 See Also
 --------
-We have a .Net Core web backend!  [Red Squirrel Core](hhttps://github.com/Feasoron/red-squirrel-core)
+We have a .Net Core web backend!  [Red Squirrel Core](https://github.com/Feasoron/red-squirrel-core)
