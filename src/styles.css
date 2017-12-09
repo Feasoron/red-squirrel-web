@@ -3,3 +3,11 @@
 .app-content{
   padding: 1em;
 }
+
+mat-list-item{
+  display:block;
+}
+
+.list-block{
+  margin: 1em;
+}

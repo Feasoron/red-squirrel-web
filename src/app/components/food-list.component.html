@@ -1,11 +1,12 @@
+<div class="list-block">
 <mat-card *ngIf='Foods'>
   <mat-card-header>Available Foods</mat-card-header>
-  <mat-list dense *ngFor='let food of Foods | async'>
-    <mat-list-item>
+  <mat-list dense *ngFor='let food of Foods | async' role="list">
+    <mat-list-item role="listitem">
       <button mat-button color='primary' (click)='delete(food); $event.stopPropagation()'>
-          <i class='material-icons -18'>delete</i>
-    </button>
-     <span> {{food.name}}</span>
+        <i class='material-icons -18'>delete</i>
+      </button>
+      <span> {{food.name}}</span>
     </mat-list-item>
   </mat-list>
   <mat-input-container>
@@ -13,5 +14,8 @@
            [(ngModel)]='NewName'
            (keyup.enter)='addFood()'/>
   </mat-input-container>
-  <button mat-raised-button color=’primary’ (click)='addFood()'><mat-icon>check</mat-icon></button>
+  <button mat-raised-button color=’primary’ (click)='addFood()'>
+    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">check</mat-icon>
+  </button>
 </mat-card>
+</div>
