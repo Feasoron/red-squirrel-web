@@ -1,3 +1,4 @@
+<div  class="list-block">
 <mat-card *ngIf='Locations'>
   <mat-card-header>Available Locations</mat-card-header>
   <mat-list dense *ngFor='let location of Locations | async'>
@@ -13,5 +14,8 @@
            [(ngModel)]='NewName'
            (keyup.enter)='addLocation()'/>
   </mat-input-container>
-  <button mat-raised-button color=’primary’ (click)='addLocation()'><mat-icon>check</mat-icon></button>
+  <button mat-raised-button color=’primary’ (click)='addLocation()'>
+    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">check</mat-icon>
+  </button>
 </mat-card>
+</div>

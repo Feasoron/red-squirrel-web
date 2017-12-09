@@ -1,10 +1,11 @@
+<div class="list-block">
 <mat-card *ngIf='Units'>
   <mat-card-header>Available Units</mat-card-header>
   <mat-list dense *ngFor='let unit of Units | async'>
     <mat-list-item>
-      <button md-button color='primary' (click)='delete(unit); $event.stopPropagation()'>
-          <i class='material-icons md-18'>delete</i>
-    </button>
+      <button mat-button color='primary' (click)='delete(unit); $event.stopPropagation()'>
+        <i class='material-icons -18'>delete</i>
+      </button>
      <span> {{unit.name}}</span>
     </mat-list-item>
   </mat-list>
@@ -13,5 +14,8 @@
            [(ngModel)]='NewName'
            (keyup.enter)='addUnit()'/>
   </mat-input-container>
-  <button mat-raised-button color=’primary’ (click)='addUnit()'><md-icon>check</md-icon></button>
+  <button mat-raised-button color=’primary’ (click)='addUnit()'>
+    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">check</mat-icon>
+  </button>
 </mat-card>
+</div>
