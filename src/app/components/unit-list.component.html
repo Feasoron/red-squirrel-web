@@ -9,13 +9,13 @@
      <span> {{unit.name}}</span>
     </mat-list-item>
   </mat-list>
-  <mat-input-container>
-    <input #box mdInput  placeholder='Unit Name'
-           [(ngModel)]='NewName'
-           (keyup.enter)='addUnit()'/>
-  </mat-input-container>
-  <button mat-raised-button color=’primary’ (click)='addUnit()'>
-    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">check</mat-icon>
-  </button>
+  <form>
+    <mat-form-field class="example-full-width">
+      <input #box matInput placeholder="Unit Name" [(ngModel)]='NewName' name='NewName'  (keyup.enter)='addUnit()'/>
+    </mat-form-field>
+    <button mat-raised-button color=’primary’ (click)='addUnit()'>
+      <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">check</mat-icon>
+    </button>
+  </form>
 </mat-card>
 </div>

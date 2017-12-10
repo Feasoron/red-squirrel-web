@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {HttpModule, RequestOptions, Http} from '@angular/http';
 import 'hammerjs';
-import {MatButtonModule, MatCheckboxModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatListModule,
+  MatInputModule, MatIconModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import { UnitListComponent } from './components/unit-list.componet'
 import { LocationListComponent } from './components/location-list.componet'
@@ -44,6 +45,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
+    MatCardModule,
+    MatListModule,
+    MatInputModule,
+    MatIconModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: UnitListComponent },

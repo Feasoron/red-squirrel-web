@@ -9,13 +9,14 @@
       <span> {{food.name}}</span>
     </mat-list-item>
   </mat-list>
-  <mat-input-container>
-    <input #box mdInput  placeholder='Food Name'
-           [(ngModel)]='NewName'
-           (keyup.enter)='addFood()'/>
-  </mat-input-container>
-  <button mat-raised-button color=’primary’ (click)='addFood()'>
-    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">check</mat-icon>
-  </button>
+  <form>
+    <mat-form-field class="example-full-width">
+      <input #box matInput placeholder="Food Name" [(ngModel)]='NewName' name='NewName'  (keyup.enter)='addFood()'/>
+    </mat-form-field>
+    <button mat-raised-button color=’primary’ (click)='addFood()'>
+      <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">check</mat-icon>
+    </button>
+  </form>
+
 </mat-card>
 </div>

@@ -1,14 +1,14 @@
-<md-toolbar>
-  <button md-button
+<mat-toolbar>
+  <button mat-button=""
     class="btn btn-primary btn-margin"
     *ngIf="!auth.isAuthenticated()"
     (click)="auth.login()">
     Log In
   </button>
-  <button md-button
+  <button mat-button=""
     class="btn btn-primary btn-margin"
     *ngIf="auth.isAuthenticated()"
     (click)="auth.logout()">
     Log Out
   </button>
-</md-toolbar>
+</mat-toolbar>
