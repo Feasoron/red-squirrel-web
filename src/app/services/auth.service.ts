@@ -15,7 +15,7 @@ export class AuthService {
     aud: 'https://redsquirrel.io',
     redirectUri: AUTH_CONFIG.REDIRECT,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile email'
   });
 
   constructor(public router: Router, private authHttp: AuthHttp) {}
