@@ -14,7 +14,7 @@ import { LoginAreaComponent } from './components/login-area.component';
 import {AuthService} from './services/auth.service';
 import { RouterModule } from '@angular/router';
 import {CallbackComponent} from './callback/callback.component';
-import {AuthorizednAreaComponent} from './components/authorized-area.component';
+import {AuthorizedAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ApiService} from './services/api-service';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -36,7 +36,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HeaderComponent,
     LoginAreaComponent,
     CallbackComponent,
-    AuthorizednAreaComponent
+    AuthorizedAreaComponent
   ],
   imports: [
     BrowserModule,
