@@ -11,7 +11,7 @@ export const AUTH_CONFIG: AuthConfig = {
   CLIENT_DOMAIN: 'redsquirrel.auth0.com',
   AUDIENCE: 'https://redsquirrel.io',
   REDIRECT: 'http://localhost:4200/callback',
-  SCOPE: 'openid'
+  SCOPE: 'openid profile email'
 };
 
 /*
