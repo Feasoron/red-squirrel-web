@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthService } from'../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import {ApiService} from '../services/api-service';
 
 @Component({
-  selector: 'login-area',
+  selector: 'app-login-area',
   templateUrl: 'login-area.component.html',
   providers: [AuthService]
 })

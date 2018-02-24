@@ -18,6 +18,8 @@ import {AuthorizedAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ApiService} from './services/api-service';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { DefinitionComponent } from './components/definition.component';
+import {InventoryComponent} from "./components/inventorty.component";
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -27,6 +29,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     },
   }), http, options);
 }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HeaderComponent,
     LoginAreaComponent,
     CallbackComponent,
-    AuthorizedAreaComponent
+    AuthorizedAreaComponent,
+    DefinitionComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
