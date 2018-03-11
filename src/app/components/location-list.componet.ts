@@ -7,7 +7,7 @@ import { Observable }     from 'rxjs/Observable';
 import {Location} from "../models/location";
 
 @Component({
-  selector: 'location-list',
+  selector: 'app-location-list',
   templateUrl: 'location-list.component.html',
   providers: []
 })
@@ -19,7 +19,7 @@ export class LocationListComponent implements OnInit{
   Locations: Observable<Location[]>;
   NewName: string = null;
 
-  addLocation(){
+  addLocation() {
     console.log(this.NewName);
     let newLocation : Location = {
       id: null,
