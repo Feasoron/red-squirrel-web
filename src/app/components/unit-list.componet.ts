@@ -11,14 +11,14 @@ import { Observable } from 'rxjs/Observable';
   providers: []
 })
 
-export class UnitListComponent implements OnInit{
+export class UnitListComponent implements OnInit {
 
   constructor(private apiService: ApiService) {}
 
   Units: Observable<Unit[]>;
   NewName: string = null;
 
-  addUnit(){
+  addUnit() {
     console.log(this.NewName);
     let newUnit : Unit = {
       id: null,
