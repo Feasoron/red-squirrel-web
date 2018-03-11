@@ -2,29 +2,32 @@
 <div id="newInventory">
   <h4>Add a new inventory item</h4>
   <mat-form-field class="example-full-width">
-    <input type="number" matInput placeholder="Quantity" value="">
+    <input type="number" matInput placeholder="Quantity" value=""  [(ngModel)]="Quantity">
   </mat-form-field>
   <mat-form-field>
-  <mat-select placeholder="Unit">
-    <mat-option *ngFor="let unit of Units | async" [value]="unit.name">
+  <mat-select placeholder="Unit"  [(ngModel)]="SelectedUnit">
+    <mat-option *ngFor="let unit of Units | async" [value]="unit">
       {{ unit.name }}
     </mat-option>
   </mat-select>
   </mat-form-field>
   of
   <mat-form-field>
-  <mat-select placeholder="Food">
-    <mat-option *ngFor="let food of Foods | async" [value]="food.name">
+  <mat-select placeholder="Food" [(ngModel)]="SelectedFood">
+    <mat-option *ngFor="let food of Foods | async" [value]="food"  >
       {{ food.name }}
     </mat-option>
   </mat-select>
   </mat-form-field>
   in
   <mat-form-field>
-  <mat-select placeholder="Location">
-    <mat-option *ngFor="let location of Locations | async" [value]="location.name">
+  <mat-select placeholder="Location"  [(ngModel)]="SelectedLocation">
+    <mat-option *ngFor="let location of Locations | async" [value]="location">
       {{ location.name }}
     </mat-option>
   </mat-select>
 </mat-form-field>
+  <button mat-raised-button color=’primary’ (click)='addInventory()'>
+    <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">check</mat-icon>
+  </button>
 </div>

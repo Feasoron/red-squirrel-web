@@ -18,16 +18,25 @@ export class InventoryComponent implements OnInit {
   Units: Observable<Unit[]>;
   Foods: Observable<Food[]>;
 
+  SelectedFood: Food;
+  SelectedLocation: Location;
+  SelectedUnit: Unit;
+  Quantity: number;
+
   NewName: string = null;
   constructor(private apiService: ApiService) {}
 
   public addInventory(): void {
 
-    debugger;
+  console.log(this.SelectedFood.name);
+  console.log(this.SelectedLocation.name);
+  console.log(this.SelectedUnit.name);
+  console.log(this.Quantity);
+
 //
-    this.apiService.addInventory(null)
+//    this.apiService.addInventory(null)
     // todo - async on response
-    this.NewName = null
+ //   this.NewName = null
 
   }
 
