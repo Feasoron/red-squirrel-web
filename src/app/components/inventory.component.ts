@@ -33,8 +33,15 @@ export class InventoryComponent implements OnInit {
   console.log(this.SelectedUnit.name);
   console.log(this.Quantity);
 
-//
-//    this.apiService.addInventory(null)
+  const newInventory: Inventory = {
+    id: null,
+    food: { id: this.SelectedFood.id, name: this.SelectedFood.name},
+    location: { id: this.SelectedLocation.id, name: this.SelectedLocation.name},
+    unit: { id: this.SelectedUnit.id, name: this.SelectedUnit.name},
+    amount: this.Quantity
+  }
+
+  this.apiService.addInventory(newInventory);
     // todo - async on response
  //   this.NewName = null
 
