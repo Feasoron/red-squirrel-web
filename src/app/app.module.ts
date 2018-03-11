@@ -12,12 +12,13 @@ import { HeaderComponent } from './components/header.component'
 import {FoodListComponent} from './components/food-list.componet';
 import { LoginAreaComponent } from './components/login-area.component';
 import {AuthService} from './services/auth.service';
-import { RouterModule } from '@angular/router';
-import {CallbackComponent} from './callback/callback.component';
+import { RouterModule, Routes } from '@angular/router';
 import {AuthorizedAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ApiService} from './services/api-service';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { DefinitionComponent } from './components/definition.component';
+import {InventoryComponent} from './components/inventory.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -27,6 +28,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     },
   }), http, options);
 }
+
+const appRoutes: Routes = [
+  { path: '', redirectTo: 'definitions',  pathMatch: 'full' },
+  { path: 'inventory', component: InventoryComponent },
+  { path: 'definitions', component: DefinitionComponent},
+  { path: '**', redirectTo: '' }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +44,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     FoodListComponent,
     HeaderComponent,
     LoginAreaComponent,
-    CallbackComponent,
-    AuthorizedAreaComponent
+    AuthorizedAreaComponent,
+    DefinitionComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -50,11 +60,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     MatInputModule,
     MatIconModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([
-      { path: '', component: UnitListComponent },
-      { path: 'callback', component: CallbackComponent },
-      { path: '**', redirectTo: '' }
-    ])
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [AuthService, ApiService,  {
     provide: AuthHttp,

@@ -35,9 +35,9 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/definitions']);
       } else if (err) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/definitions']);
         console.log(err);
         // alert(`Error: ${err.error}. Check the console for further details.`);
       }
