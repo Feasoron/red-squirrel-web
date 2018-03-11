@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { Unit } from '../models/unit'
 import {ApiService} from '../services/api-service'
 import { OnInit } from '@angular/core';
-import { Observable }     from 'rxjs/Observable';
-import {Food} from "../models/food";
+import { Observable } from 'rxjs/Observable';
+import {Food} from '../models/food';
 
 @Component({
   selector: 'food-list',
@@ -12,31 +12,30 @@ import {Food} from "../models/food";
   providers: []
 })
 
-export class FoodListComponent implements OnInit{
-
-  constructor(private apiService: ApiService) {}
+export class FoodListComponent implements OnInit {
 
   Foods: Observable<Food[]>;
   NewName: string = null;
+  constructor(private apiService: ApiService) {}
 
-  addFood(){
+  addFood() {
     console.log(this.NewName);
-    let newFood : Food = {
+    const newFood: Food = {
       id: null,
       name: this.NewName
     };
 
      this.apiService.addFood(newFood)
-     //todo - async on response
+     // todo - async on response
     this.NewName = null
 
   }
 
-  delete(food: Food){
+  delete(food: Food) {
     this.apiService.deleteFood(food);
   }
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.Foods = this.apiService.foods;
   }
 }

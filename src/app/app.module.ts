@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {HttpModule, RequestOptions, Http} from '@angular/http';
 import 'hammerjs';
-import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatListModule,
-  MatInputModule, MatIconModule} from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatListModule,
+  MatInputModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatOptionModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { UnitListComponent } from './components/unit-list.componet'
 import { LocationListComponent } from './components/location-list.componet'
@@ -59,10 +59,13 @@ const appRoutes: Routes = [
     MatListModule,
     MatInputModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   providers: [AuthService, ApiService,  {

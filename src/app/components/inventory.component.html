@@ -1,1 +1,30 @@
-Inventory goes here
+
+<div id="newInventory">
+  <h4>Add a new inventory item</h4>
+  <mat-form-field class="example-full-width">
+    <input type="number" matInput placeholder="Quantity" value="">
+  </mat-form-field>
+  <mat-form-field>
+  <mat-select placeholder="Unit">
+    <mat-option *ngFor="let unit of Units | async" [value]="unit.name">
+      {{ unit.name }}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+  of
+  <mat-form-field>
+  <mat-select placeholder="Food">
+    <mat-option *ngFor="let food of Foods | async" [value]="food.name">
+      {{ food.name }}
+    </mat-option>
+  </mat-select>
+  </mat-form-field>
+  in
+  <mat-form-field>
+  <mat-select placeholder="Location">
+    <mat-option *ngFor="let location of Locations | async" [value]="location.name">
+      {{ location.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>

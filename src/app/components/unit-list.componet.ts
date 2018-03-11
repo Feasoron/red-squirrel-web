@@ -13,29 +13,28 @@ import { Observable } from 'rxjs/Observable';
 
 export class UnitListComponent implements OnInit {
 
-  constructor(private apiService: ApiService) {}
-
   Units: Observable<Unit[]>;
   NewName: string = null;
+  constructor(private apiService: ApiService) {}
 
-  addUnit() {
+  public addUnit(): void {
     console.log(this.NewName);
-    let newUnit : Unit = {
+    const newUnit: Unit = {
       id: null,
       name: this.NewName
     };
 
-     this.apiService.addUnit(newUnit)
-     //todo - async on response
+    this.apiService.addUnit(newUnit)
+     // todo - async on response
     this.NewName = null
 
   }
 
-  delete(unit: Unit){
+  delete(unit: Unit) {
     this.apiService.deleteUnit(unit);
   }
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.Units = this.apiService.units;
   }
 }

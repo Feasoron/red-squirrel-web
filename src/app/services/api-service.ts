@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AuthHttp } from 'angular2-jwt';
+import {Inventory} from "../models/inventory";
 
 @Injectable()
 
@@ -16,28 +17,28 @@ export class ApiService implements OnInit {
     units: Unit[],
     locations: Location[],
     foods: Food[]
+    inventories: Inventory[]
   };
 
   baseUri = 'http://localhost:5000/api/';
   private _units: BehaviorSubject<Unit[]>;
   private _locations: BehaviorSubject<Location[]>;
   private _foods: BehaviorSubject<Food[]>;
+  private _inventories: BehaviorSubject<Inventory[]>;
   locations: Observable<Location[]>;
   units: Observable<Unit[]>;
   foods: Observable<Food[]>;
+  inventories: Observable<Inventory[]>;
 
   ngOnInit(): void {
     this._units = new BehaviorSubject([]);
     this._locations = new BehaviorSubject([]);
     this._foods = new BehaviorSubject([]);
-
- //   this.getUnits();
-  //  this.getLocations();
- //   this.getFoods();
+    this._inventories = new BehaviorSubject([]);
   }
 
   constructor(private http: Http, private authHttp: AuthHttp) {
-    this.dataStore = { units: [], locations: [], foods: [] };
+    this.dataStore = { units: [], locations: [], foods: [], inventories: [] };
 
     this._units = <BehaviorSubject<Unit[]>>new BehaviorSubject([]);
     this.units = this._units.asObservable();
@@ -48,6 +49,10 @@ export class ApiService implements OnInit {
     this._foods = <BehaviorSubject<Food[]>>new BehaviorSubject([]);
     this.foods = this._foods.asObservable();
 
+    this._inventories = <BehaviorSubject<Inventory[]>>new BehaviorSubject([]);
+    this.inventories = this._inventories.asObservable();
+
+    this.getInventories();
     this.getUnits();
     this.getLocations();
     this.getFoods();
@@ -81,6 +86,16 @@ export class ApiService implements OnInit {
         this.dataStore.foods = data;
         this.updateFoodSubscriptions();
       }, error => console.log('Could not load foods: ' + error));
+  }
+
+  getInventories(): void  {
+    this.authHttp.get(this.baseUri + 'inventories')
+      .map(response => response.json())
+      .subscribe(data => {
+        console.log(data);
+        this.dataStore.foods = data;
+        this.updateInventorySubscriptions();
+      }, error => console.log('Could not load inventories: ' + error));
   }
 
   addUnit(unit: Unit) {
@@ -117,6 +132,23 @@ export class ApiService implements OnInit {
       });
   }
 
+  addInventory(inventory: Inventory) {
+    const payload =  JSON.stringify(inventory);
+    console.log(payload);
+
+    this.authHttp.post(this.baseUri + 'inventories', payload,  {headers: this.headers})
+      .map(
+        (res: Response) => {
+          inventory.id = res.json().result;
+          this.dataStore.inventories.push(inventory);
+          this.updateLocationSubscriptions();
+          return true;
+        }, error => console.log(error)
+      )
+      .subscribe((res: Boolean) => {
+      });
+  }
+
   addFood(food: Food) {
     const payload =  JSON.stringify(food);
     console.log(payload);
@@ -136,7 +168,7 @@ export class ApiService implements OnInit {
 
   deleteUnit(unit: Unit): Promise<Boolean> {
     return new Promise((resolve) => {
-      this.authHttp.delete(this.baseUri + 'units/' + unit.id)
+      this.authHttp.delete(this.baseUri + 'units' + unit.id)
         .subscribe(() => {
             this.dataStore.units.splice(this.dataStore.units.indexOf(unit), 1);
             this.updateUnitSubscriptions();
@@ -148,7 +180,7 @@ export class ApiService implements OnInit {
 
   deleteLocation(location: Location): Promise<Boolean> {
     return new Promise(() => {
-      this.authHttp.delete(this.baseUri + 'locations/' + location.id)
+      this.authHttp.delete(this.baseUri + 'locations' + location.id)
         .subscribe(() => {
             this.dataStore.locations.splice(this.dataStore.locations.indexOf(location), 1);
             this.updateLocationSubscriptions();
@@ -160,7 +192,7 @@ export class ApiService implements OnInit {
 
   deleteFood(food: Food): Promise<Boolean> {
     return new Promise(() => {
-      this.authHttp.delete(this.baseUri + 'foods/' + food.id)
+      this.authHttp.delete(this.baseUri + 'foods' + food.id)
         .subscribe(() => {
             this.dataStore.foods.splice(this.dataStore.foods.indexOf(food), 1);
             this.updateFoodSubscriptions();
@@ -180,5 +212,9 @@ export class ApiService implements OnInit {
 
   private updateFoodSubscriptions() {
     this._foods.next(Object.assign({}, this.dataStore).foods);
+  }
+
+  private updateInventorySubscriptions() {
+    this._inventories.next(Object.assign({}, this.dataStore).inventories);
   }
 }
