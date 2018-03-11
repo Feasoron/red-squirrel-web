@@ -13,7 +13,6 @@ import {FoodListComponent} from './components/food-list.componet';
 import { LoginAreaComponent } from './components/login-area.component';
 import {AuthService} from './services/auth.service';
 import { RouterModule, Routes } from '@angular/router';
-import {CallbackComponent} from './callback/callback.component';
 import {AuthorizedAreaComponent} from './components/authorized-area.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ApiService} from './services/api-service';
@@ -34,7 +33,6 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'definitions',  pathMatch: 'full' },
   { path: 'inventory', component: InventoryComponent },
   { path: 'definitions', component: DefinitionComponent},
-  { path: 'callback', component: CallbackComponent },
   { path: '**', redirectTo: '' }
 ];
 
@@ -46,7 +44,6 @@ const appRoutes: Routes = [
     FoodListComponent,
     HeaderComponent,
     LoginAreaComponent,
-    CallbackComponent,
     AuthorizedAreaComponent,
     DefinitionComponent,
     InventoryComponent
