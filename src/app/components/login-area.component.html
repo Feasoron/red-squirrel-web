@@ -1,12 +1,13 @@
 <mat-toolbar>
-  <button mat-button=""
+  <button mat-raised-button class="nav-button" routerLink="/definitions">Definitions</button>
+  <button mat-raised-button class="nav-button" routerLink="/inventory">Inventory</button>
+  <button mat-raised-button class="nav-button"
     class="btn btn-primary btn-margin"
     *ngIf="!auth.isAuthenticated()"
     (click)="auth.login()">
     Log In
   </button>
-  <button mat-button=""
-    class="btn btn-primary btn-margin"
+  <button mat-raised-button class="nav-button"
     *ngIf="auth.isAuthenticated()"
     (click)="auth.logout()">
     Log Out

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
 import { AUTH_CONFIG } from '../auth0-variables';
+import {AuthHttp} from "angular2-jwt";
 
 @Injectable()
 export class AuthService {
@@ -14,10 +15,10 @@ export class AuthService {
     aud: 'https://redsquirrel.io',
     redirectUri: AUTH_CONFIG.REDIRECT,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile email'
   });
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private authHttp: AuthHttp) {}
 
   public login(): void {
     this.auth0.authorize({
@@ -34,21 +35,30 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/definitions']);
       } else if (err) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/definitions']);
         console.log(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
+        // alert(`Error: ${err.error}. Check the console for further details.`);
       }
     });
   }
 
   private setSession(authResult): void {
-    // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+
+    // Hit the server to let it know we have a user logged in. Later, we'll move this out
+    this.authHttp.get('http://localhost:5000/api/accounts/').map(response => response.json())
+      .subscribe(() => {
+        console.log('responded');
+        return true;
+      },
+      (err) => {
+        console.log(err);
+        return false });
   }
 
   public logout(): void {
