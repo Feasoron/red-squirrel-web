@@ -72,7 +72,6 @@ export class ApiService implements OnInit {
     this.authHttp.get(this.baseUri + 'locations')
       .map(response => response.json())
       .subscribe(data => {
-        console.log(data);
         this.dataStore.locations = data;
         this.updateLocationSubscriptions();
       }, error => console.log('Could not load locations: ' + error));
@@ -82,7 +81,6 @@ export class ApiService implements OnInit {
     this.authHttp.get(this.baseUri + 'foods')
       .map(response => response.json())
       .subscribe(data => {
-        console.log(data);
         this.dataStore.foods = data;
         this.updateFoodSubscriptions();
       }, error => console.log('Could not load foods: ' + error));
@@ -134,7 +132,6 @@ export class ApiService implements OnInit {
 
   addInventory(inventory: Inventory) {
     const payload =  JSON.stringify(inventory);
-    console.log(payload);
 
     this.authHttp.post(this.baseUri + 'inventories', payload,  {headers: this.headers})
       .map(
@@ -151,7 +148,6 @@ export class ApiService implements OnInit {
 
   addFood(food: Food) {
     const payload =  JSON.stringify(food);
-    console.log(payload);
 
     this.authHttp.post(this.baseUri + 'foods', payload,  {headers: this.headers})
       .map(
