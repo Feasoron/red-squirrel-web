@@ -23,7 +23,7 @@
     "@angular/material": "^5.0.0",
     "@angular/platform-browser": "^5.1.0",
     "@angular/platform-browser-dynamic": "^5.1.0",
-    "@angular/router": "^5.1.0",
+    "@angular/router": "^6.0.3",
     "ajv": "^5.5.1",
     "angular2-jwt": "^0.2.3",
     "auth0-js": "^8.12.0",
